@@ -29,23 +29,31 @@ public class CalculatorPanel extends JPanel {
 
         panel = new JPanel();
         panel.setLayout(new GridLayout(5,4));
+        addButton("clear", command);
+        addButton("\u00B1", command); //switchSign
+        addButton("%", command);
+        addButton("x\u02b8", command); //powerOf
+
         addButton("7", number);
         addButton("8", number);
         addButton("9", number);
         addButton("\u00F7", command);
+
         addButton("4", number);
         addButton("5", number);
         addButton("6", number);
         addButton("\u00D7", command);
+
         addButton("1", number);
         addButton("2", number);
         addButton("3", number);
         addButton("-", command);
+
         addButton("0", number);
         addButton(".", number);
         addButton("=", command);
         addButton("+", command);
-        addButton("clear", command);
+
 
         add(panel,BorderLayout.CENTER);
     }
@@ -78,7 +86,7 @@ public class CalculatorPanel extends JPanel {
 
             Calculator calculator = new Calculator(result);
             double displayInput = Double.parseDouble(display.getText());
-            if(command.equals("clear")){
+            if(command.equals("clear")|| command.equals("%") || command.equals("\u00B1")){
                 result = calculator.calculate(command,displayInput);
             }
             else {

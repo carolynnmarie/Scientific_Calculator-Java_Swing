@@ -10,7 +10,8 @@ public class Calculator {
 
     public double calculate(String command, double displayInput){
         return (command.equals("+"))? add(displayInput): (command.equals("-"))?subtract(displayInput): (command.equals("\u00D7"))?multiply(displayInput):
-                (command.equals("\u00F7"))? divide(displayInput):(command.equals("clear"))?0.0: displayInput;
+                (command.equals("\u00F7"))? divide(displayInput):(command.equals("x\u02b8"))?powerOf(displayInput):(command.equals("\u00B1"))?switchSign():
+                        (command.equals("%"))?percent():(command.equals("clear"))?0.0: displayInput;
     }
 
     public double add(double displayInput){
@@ -29,17 +30,22 @@ public class Calculator {
         return previousResult / displayInput;
     }
 
-//    public double switchSign(){
-//
-//    }
-//
-//    public double percent(){
-//
-//    }
-//
-//    public double squared(){
-//
-//    }
+    public double switchSign(){
+        if(previousResult<0){
+            previousResult = Math.abs(previousResult);
+        } else {
+            previousResult = 0 - previousResult;
+        }
+        return previousResult;
+    }
+
+    public double percent(){
+        return previousResult/100;
+    }
+
+    public double powerOf(double displayInput){
+        return Math.pow(previousResult,displayInput);
+    }
 
 }
 //    public void calculate(double x){
