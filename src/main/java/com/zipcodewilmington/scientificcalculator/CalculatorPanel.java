@@ -14,7 +14,7 @@ public class CalculatorPanel extends JPanel {
     private boolean start;
 
     public CalculatorPanel() {
-        setSize(400, 400);
+        setSize(350,350);
         setVisible(true);
         setLayout(new BorderLayout());
 
@@ -32,11 +32,11 @@ public class CalculatorPanel extends JPanel {
         addButton("7", number);
         addButton("8", number);
         addButton("9", number);
-        addButton("/", command);
+        addButton("\u00F7", command);
         addButton("4", number);
         addButton("5", number);
         addButton("6", number);
-        addButton("*", command);
+        addButton("\u00D7", command);
         addButton("1", number);
         addButton("2", number);
         addButton("3", number);
@@ -45,7 +45,7 @@ public class CalculatorPanel extends JPanel {
         addButton(".", number);
         addButton("=", command);
         addButton("+", command);
-        addButton("clear", number);
+        addButton("clear", command);
 
         add(panel,BorderLayout.CENTER);
     }
@@ -66,12 +66,7 @@ public class CalculatorPanel extends JPanel {
                 display.setText("");
                 start = false;
             }
-            if(input.equals("clear")){
-                display.setText("0");
-                start = false;
-            } else {
-                display.setText(display.getText() + input);
-            }
+            display.setText(display.getText() + input);
         }
     }
 
@@ -80,8 +75,17 @@ public class CalculatorPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
-            calculate(Double.parseDouble(display.getText()));
-            previousCommand = command;
+
+            Calculator calculator = new Calculator(result);
+            double displayInput = Double.parseDouble(display.getText());
+            if(command.equals("clear")){
+                result = calculator.calculate(command,displayInput);
+            }
+            else {
+                result = calculator.calculate(previousCommand, displayInput);
+                previousCommand = command;
+            }
+            display.setText("" + result);
             start = true;
             }
         }

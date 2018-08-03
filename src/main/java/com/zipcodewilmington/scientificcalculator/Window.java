@@ -17,17 +17,18 @@ public class Window extends JFrame {
 
 
     public Window(){
-        setSize(450, 500);
+        setSize(425, 425);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setLayout(null);
 
         this.jLabel = new JLabel();
-        jLabel.setBounds(100,20,400,25);
         jLabel.setVisible(true);
         jLabel.setBackground(Color.WHITE);
 
+
         this.calculatorPanel = new CalculatorPanel();
-        calculatorPanel.setBounds(100,20, 400, 400);
+        calculatorPanel.setBounds(25,25, 350, 350);
 
         Container container = getContentPane();
         container.add(jLabel);
