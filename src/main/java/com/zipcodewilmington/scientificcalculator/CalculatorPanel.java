@@ -28,32 +28,37 @@ public class CalculatorPanel extends JPanel {
         ActionListener command = new CommandListener();
 
         panel = new JPanel();
-        panel.setLayout(new GridLayout(5,4));
+        panel.setLayout(new GridLayout(5,5));
+
+        addButton("x\u00B2", command); //squared
+        addButton("x\u02b8", command); //powerOf
         addButton("clear", command);
         addButton("\u00B1", command); //switchSign
         addButton("%", command);
-        addButton("x\u02b8", command); //powerOf
 
+        addButton("\u221A", command); //square root
         addButton("7", number);
         addButton("8", number);
         addButton("9", number);
-        addButton("\u00F7", command);
+        addButton("\u00F7", command); //multiply
 
+        addButton("log", command);
         addButton("4", number);
         addButton("5", number);
         addButton("6", number);
-        addButton("\u00D7", command);
+        addButton("\u00D7", command); //divide
 
+        addButton("sin",command);
         addButton("1", number);
         addButton("2", number);
         addButton("3", number);
         addButton("-", command);
 
+        addButton("cos", command);
         addButton("0", number);
         addButton(".", number);
         addButton("=", command);
         addButton("+", command);
-
 
         add(panel,BorderLayout.CENTER);
     }
@@ -86,6 +91,7 @@ public class CalculatorPanel extends JPanel {
 
             Calculator calculator = new Calculator(result);
             double displayInput = Double.parseDouble(display.getText());
+
             if(command.equals("clear")|| command.equals("%") || command.equals("\u00B1")){
                 result = calculator.calculate(command,displayInput);
             }
@@ -93,21 +99,11 @@ public class CalculatorPanel extends JPanel {
                 result = calculator.calculate(previousCommand, displayInput);
                 previousCommand = command;
             }
+
             display.setText("" + result);
             start = true;
             }
         }
 
-    public void calculate(double x){
-        if(previousCommand.equals("+")){ result += x;}
-        else if(previousCommand.equals("-")){ result -= x;}
-        else if(previousCommand.equals("*")) {result *= x;}
-        else if(previousCommand.equals("/")) {
-            double temp = result;
-            result = temp / x;
-        }
-        else if(previousCommand.equals("=")) result = x;
-        display.setText("" + result);
-    }
 
 }
