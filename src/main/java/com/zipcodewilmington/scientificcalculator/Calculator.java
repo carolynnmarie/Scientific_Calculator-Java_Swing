@@ -16,12 +16,12 @@ public class Calculator {
                 (command.equals("x\u02b8"))? powerOf(displayInput):
                 (command.equals("\u00B1"))? switchSign():
                 (command.equals("%"))? percent():
-                (command.equals("clear"))?0.0:
                 (command.equals("sin"))? sin(displayInput):
                 (command.equals("cos"))? cos(displayInput):
                 (command.equals("x\u00B2"))? squared(displayInput):
                 (command.equals("\u221A"))? sqrt(displayInput):
                 (command.equals("log"))? log(displayInput):
+                (command.equals("clear"))?0.0:
                 displayInput;
     }
 
